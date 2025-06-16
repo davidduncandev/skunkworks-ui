@@ -1,0 +1,44 @@
+{
+  "name": "@skunkworks-ui/utils",
+  "version": "0.0.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/utils.d.mts",
+        "default": "./dist/utils.mjs"
+      },
+      "require": {
+        "types": "./dist/utils.d.ts",
+        "default": "./dist/utils.js"
+      }
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "build:components": "tsc",
+    "check-types": "tsc --noEmit",
+    "dev:components": "tsc --watch",
+    "lint": "eslint src --max-warnings 0"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.0"
+  },
+  "devDependencies": {
+    "@skunkworks-ui/eslint-config": "workspace:*",
+    "@skunkworks-ui/typescript-config": "workspace:*",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^9.28.0",
+    "typescript": "5.8.2"
+  }
+}

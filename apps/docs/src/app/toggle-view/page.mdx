@@ -1,0 +1,127 @@
+export const metadata = {
+  title: 'ToggleView',
+  description: 'The API for ToggleView React component',
+}
+
+# ToggleView
+
+A headless React component which toggles between two views with correct management of focus. Focus management is orchestrated via the action to switch the view, and not when a particular view is mounted.{{ className: 'lead' }}
+
+## Demo
+
+This example features a Card component that toggles between two views. The goal isn’t to promote this specific pattern, but to illustrate a common use case: when a button triggers a dynamic view change that removes the currently focused element from the DOM, it results in the loss of focus—creating a disruptive experience, especially for keyboard and assistive technology users.
+
+In this demo, when the first view is toggled, focus is intentionally set on the Card heading to place the user at the start of the new content and ensure it’s announced. When toggling back, focus shifts to the first input field. The ToggleView component is designed with composability in mind, allowing you to specify which element should receive focus based on your specific use case.
+
+<ToggleViewDemo />
+
+## Anatomy
+
+```js {{ title: 'Basic' }}
+import * as ToggleView from '@skunkworks-ui/toggle-view';
+
+export default () => (
+  <ToggleView.Root>
+    <ToggleView.Content>
+      <div>
+        <ToggleView.TargetFocus>
+          {/* The element where focus should target when this view is returned to */}
+        </ToggleView.TargetFocus>
+
+        <ToggleView.Trigger>Click to switch view</ToggleView.Trigger>
+      </div>
+    </ToggleView.Content>
+    <ToggleView.SwitchedContent>
+      <div>
+          <ToggleView.TargetHeading>
+            {/* The heading where focus should target when this view toggled to */}
+          </ToggleView.TargetHeading>
+          <ToggleView.Trigger>
+              Go back
+            </Button>
+      </div>
+    </ToggleView.SwitchedContent>
+  </ToggleView.Root>
+);
+```
+
+## API Reference
+
+### Root
+
+Contains all parts of the `ToggleView`.
+
+<Properties>
+  <Property name="defaultSwitched" type="boolean">
+    The switched state of the ToggleView when it is initially rendered. Use when
+    you do not need to control its switched state.
+  </Property>
+  <Property name="switched" type="boolean">
+    The controlled switched state of the ToggleView. Must be used in conjunction
+    with `onSwitchedChange`.
+  </Property>
+  <Property name="onSwitchedChange" type="(open: boolean) => void">
+    Event handler called when the switched state of the ToggleView changes.
+  </Property>
+</Properties>
+
+### Trigger
+
+A button that toggles the view.
+
+<Properties>
+  <Property name="asChild" type="boolean">
+    Change the default rendered element for the one passed as a child, merging
+    their props and behavior.
+  </Property>
+</Properties>
+
+### Content
+
+Contains content to be rendered in the non-switched view.
+
+### SwitchedContent
+
+Contains content to be rendered in the switched view.
+
+### TargetFocus
+
+Wraps an interactive element which should receive focus when the parent view is switched to.
+
+### TargetHeading
+
+Used to focus a heading tag. This acts much like `TargetFocus`, except that it also applied a `tabIndex = "-1"` to the heading.
+
+## Examples
+
+```js {{ title: 'Controlled API' }}
+import React from 'react';
+import * as ToggleView from '@skunkworks-ui/toggle-view';
+
+export default () => {
+  const [switched, setSwitched] = React.useState(false)
+  return (
+    <ToggleView.Root switched={switched} onSwitchedChange={setSwitched}>
+      <ToggleView.Content>
+        <div>
+          <ToggleView.TargetFocus>
+            {/* The element where focus should target when this view is returned to */}
+          </ToggleView.TargetFocus>
+
+          <ToggleView.Trigger>Click to switch view</ToggleView.Trigger>
+        </div>
+      </ToggleView.Content>
+      <ToggleView.SwitchedContent>
+        <div>
+            <ToggleView.TargetHeading>
+              {/* The heading where focus should target when this view toggled to */}
+            </ToggleView.TargetHeading>
+            <ToggleView.Trigger>
+                Go back
+              </Button>
+        </div>
+      </ToggleView.SwitchedContent>
+    </ToggleView.Root>
+  )
+}
+```

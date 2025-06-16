@@ -1,0 +1,49 @@
+{
+  "name": "@skunkworks-ui/toggle-view",
+  "version": "0.0.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/ToggleView.d.ts",
+        "default": "./dist/ToggleView.js"
+      },
+      "require": {
+        "types": "./dist/ToggleView.d.ts",
+        "default": "./dist/ToggleView.js"
+      }
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "build:components": "tsc",
+    "check-types": "tsc --noEmit",
+    "dev:components": "tsc --watch",
+    "lint": "eslint src --max-warnings 0"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.0",
+    "@skunkworks-ui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@skunkworks-ui/utils": "workspace:*",
+    "@skunkworks-ui/eslint-config": "workspace:*",
+    "@skunkworks-ui/tailwind-config": "workspace:*",
+    "@skunkworks-ui/typescript-config": "workspace:*",
+    "@tailwindcss/cli": "^4.1.5",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^9.28.0",
+    "tailwindcss": "^4.1.5",
+    "typescript": "5.8.2"
+  }
+}
