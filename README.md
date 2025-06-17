@@ -4,7 +4,7 @@ Skunkworks UI is a collection of insights, experiments, and practical solutions 
 
 ## Getting Started
 
-Skunkworks UI is built with [pnpm](https://pnpm.io/). Please follow their [install instructions](https://pnpm.io/installation) to get `pnpm` installed on your system.
+Skunkworks UI is built with [pnpm](https://pnpm.io/). Please follow their [install instructions](https://pnpm.io/installation) to get `pnpm` installed on your system. The pnpm and node versions currently used in this project are `9.1.4` and `20` respectively.
 
 Turbo must also be installed globally if running turbo rather than pnpm from the command line. Please follow their [install instructions](https://www.npmjs.com/package/turbo) to get turbo installed on your system. Then, run these commands:
 
@@ -13,6 +13,8 @@ Turbo must also be installed globally if running turbo rather than pnpm from the
 ```sh
 pnpm install      # installs dependences across all packages
 pnpm build        # builds all packages
+pnpm lint         # lints all packages
+pnpm check-types  # type checks all packages
 pnpm dev          # starts the docs
 ```
 
@@ -21,5 +23,7 @@ pnpm dev          # starts the docs
 ```sh
 pnpm install      # installs dependences across all packages
 turbo build       # builds all packages
+turbo lint        # lints all packages
+turbo check-types # type checks all packages
 turbo dev         # starts the docs
 ```
