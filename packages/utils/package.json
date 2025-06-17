@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build:components": "tsc",
+    "build": "tsc",
     "check-types": "tsc --noEmit",
     "dev:components": "tsc --watch",
     "lint": "eslint src --max-warnings 0",
