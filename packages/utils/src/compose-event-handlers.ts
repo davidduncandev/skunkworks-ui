@@ -7,11 +7,13 @@
  * @param ourHandler Library-supplied event handler
  */
 export function composeEventHandlers<EventType extends React.SyntheticEvent | Event>(
-  theirHandler: ((event: EventType) => any) | undefined,
+  theirHandler: ((event: EventType) => unknown) | undefined,
   ourHandler: (event: EventType) => unknown
 ): (event: EventType) => unknown {
   return (event) => {
-    theirHandler ? theirHandler(event) : null;
+    if (theirHandler) {
+      theirHandler(event);
+    }
     if (!event.defaultPrevented) {
       return ourHandler(event);
     }

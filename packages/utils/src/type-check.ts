@@ -3,8 +3,8 @@
  *
  * @param value
  */
-export function isBoolean(value: any): value is boolean {
-  return typeof value === 'boolean';
+export function isBoolean(value: unknown): value is boolean {
+  return typeof value === "boolean";
 }
 
 /**
@@ -12,22 +12,22 @@ export function isBoolean(value: any): value is boolean {
  *
  * @param value
  */
-export function isFunction(value: any): value is Function {
-  return !!(value && {}.toString.call(value) == '[object Function]');
+export function isFunction(value: unknown): value is (...args: unknown[]) => unknown {
+  return !!(value && {}.toString.call(value) == "[object Function]");
 }
 /**
  * Checks whether or not a value is a number.
  *
  * @param value
  */
-export function isNumber(value: any): value is number {
-  return typeof value === 'number' && !isNaN(value);
+export function isNumber(value: unknown): value is number {
+  return typeof value === "number" && !isNaN(value);
 }
 /**
  * Checks whether or not a value is a string.
  *
  * @param value
  */
-export function isString(value: any): value is string {
-  return typeof value === 'string';
+export function isString(value: unknown): value is string {
+  return typeof value === "string";
 }

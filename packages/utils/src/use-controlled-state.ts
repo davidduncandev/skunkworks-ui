@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from "react";
 
 /**
  * Check if a component is controlled or uncontrolled and return the correct
@@ -8,9 +8,9 @@ import { useState, useRef, useCallback } from 'react';
  * @param controlledValue
  * @param defaultValue
  */
-export function useControlledState<T = any>({
+export function useControlledState<T = unknown>({
   controlledValue,
-  defaultValue
+  defaultValue,
 }: {
   controlledValue: T | undefined;
   defaultValue: T | (() => T);
@@ -19,7 +19,7 @@ export function useControlledState<T = any>({
   const isControlledRef = useRef(wasControlled);
 
   const [valueState, setValue] = useState(isControlledRef.current ? controlledValue! : defaultValue);
-  const set: React.Dispatch<React.SetStateAction<T>> = useCallback(n => {
+  const set: React.Dispatch<React.SetStateAction<T>> = useCallback((n) => {
     if (!isControlledRef.current) {
       setValue(n);
     }

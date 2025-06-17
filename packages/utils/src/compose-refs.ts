@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
-import { isFunction } from './type-check';
-import type { AssignableRef } from './types';
+import { useCallback } from "react";
+import { isFunction } from "./type-check";
+import type { AssignableRef } from "./types";
 
 /**
  * Passes or assigns an arbitrary value to a ref function or object.
@@ -8,16 +8,18 @@ import type { AssignableRef } from './types';
  * @param ref
  * @param value
  */
-export function assignRef<RefValueType = any>(ref: AssignableRef<RefValueType> | null | undefined, value: any) {
+export function assignRef<RefValueType = unknown>(ref: AssignableRef<RefValueType> | null | undefined, value: unknown) {
   if (ref == null) return;
   if (isFunction(ref)) {
     ref(value as RefValueType | null);
-  } else {
+  } else if ("current" in ref) {
     try {
       ref.current = value as RefValueType | null;
-    } catch (error) {
+    } catch {
       throw new Error(`Cannot assign value "${value}" to ref "${ref}"`);
     }
+  } else {
+    throw new Error(`Ref "${ref}" is not assignable.`);
   }
 }
 
@@ -28,10 +30,13 @@ export function assignRef<RefValueType = any>(ref: AssignableRef<RefValueType> |
  *
  * @param refs Refs to fork
  */
-export function useComposedRefs<RefValueType = any>(...refs: (AssignableRef<RefValueType> | null | undefined)[]) {
-  return useCallback((node: any) => {
-    for (const ref of refs) {
-      assignRef(ref, node);
-    }
-  }, refs);
+export function useComposedRefs<RefValueType = unknown>(...refs: (AssignableRef<RefValueType> | null | undefined)[]) {
+  return useCallback(
+    (node: unknown) => {
+      for (const ref of refs) {
+        assignRef(ref, node);
+      }
+    },
+    [refs]
+  );
 }
