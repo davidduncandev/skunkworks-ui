@@ -24,7 +24,8 @@
     "build:components": "tsc",
     "check-types": "tsc --noEmit",
     "dev:components": "tsc --watch",
-    "lint": "eslint src --max-warnings 0"
+    "lint": "eslint src --max-warnings 0",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
