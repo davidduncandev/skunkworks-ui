@@ -1,0 +1,50 @@
+{
+  "name": "@skunkworks-ui/resize-container",
+  "version": "0.0.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/ResizeContainer.d.ts",
+        "default": "./dist/ResizeContainer.js"
+      },
+      "require": {
+        "types": "./dist/ResizeContainer.d.ts",
+        "default": "./dist/ResizeContainer.js"
+      }
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "dev": "tsc --watch",
+    "lint": "eslint src --max-warnings 0",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.0",
+    "@skunkworks-ui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@skunkworks-ui/utils": "workspace:*",
+    "@skunkworks-ui/eslint-config": "workspace:*",
+    "@skunkworks-ui/tailwind-config": "workspace:*",
+    "@skunkworks-ui/typescript-config": "workspace:*",
+    "@tailwindcss/cli": "^4.1.5",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^9.28.0",
+    "tailwindcss": "^4.1.5",
+    "typescript": "5.8.2"
+  }
+}

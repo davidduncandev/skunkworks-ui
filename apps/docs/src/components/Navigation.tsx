@@ -239,7 +239,10 @@ export const navigation: Array<NavGroup> = [
   },
   {
     title: 'React Components',
-    links: [{ title: 'ToggleView', href: '/toggle-view' }],
+    links: [
+      { title: 'ToggleView', href: '/toggle-view' },
+      { title: 'ResizeContainer', href: '/resize-container' },
+    ],
   },
 ]
 

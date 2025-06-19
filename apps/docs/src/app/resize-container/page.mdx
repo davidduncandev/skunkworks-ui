@@ -1,0 +1,83 @@
+export const metadata = {
+  title: 'ResizeContainer',
+  description: 'The API for ResizeContainer React component',
+}
+
+# ResizeContainer
+
+Used to track changes in an elements dimensions via `ResizeObserver` API. Useful for cases when you can't rely on CSS alone for layout reconfiguration, and have to defer to Javascript.{{ className: 'lead' }}
+
+## Demo
+
+This Demo features a cluster of elements in a flex context with wrapping enabled. You can resize the container and see the container width pixel value update via a debounced ResizeObserver. The flex items also report - via a data-attribute - whether the items top position differs from the parent container, allowing the ability to detect when flex items have wrapped. This internal state is exposed via a `data-wrapped` attribute. In this example, this attribute is used to update the styling for the wrapped items.
+
+<ResizeContainerDemo />
+
+## Anatomy
+
+```js {{ title: 'Basic' }}
+import * as ResizeContainer from '@skunkworks-ui/resize-container'
+
+export default () => (
+  <ResizeContainer.Root>
+    {/* The element to track dimensions of */}
+    <ResizeContainer.Item>
+      {/* A child element with ability to detect if wrapped */}
+    </ResizeContainer.Item>
+  </ResizeContainer.Root>
+)
+```
+
+## API Reference
+
+### Root
+
+Contains all parts of the `ResizeContainer`.
+
+<Properties>
+  <Property
+    name="onResize"
+    type="({ width: number; height: number; top: number }) => void"
+  >
+    A debounced callback called when the container resizes.
+  </Property>
+</Properties>
+
+### Item
+
+A child item with access to the parents element sizing, enabling wrapping detection.
+
+<Properties>
+  <Property name="onResize" type="(wrapped: boolean) => void">
+    Callback fired when the container resizes computing whether this item has
+    wrapped.
+  </Property>
+  <Property name="[data-wrapped='true|false']" type="boolean">
+    Data attribute for wrapped state.
+  </Property>
+</Properties>
+
+## Examples
+
+```js {{ title: 'Controlled API' }}
+import React from 'react'
+import * as ResizeContainer from '@skunkworks-ui/resize-container'
+
+export default () => {
+  // Track container width
+  const [width, setWidth] = (React.useState < number) | (null > null)
+  return (
+    <ResizeContainer.Root onResize={(size) => setWidth(size?.width ?? null)}>
+      <div className="flex flex-wrap">
+        <ResizeContainer.Item>
+          <div className="border-2 border-zinc-200 p-6">Layout</div>
+        </ResizeContainer.Item>
+        <ResizeContainer.Item>
+          {/* use data attribute as styling hook */}
+          <div className="data-[wrapped=true]:text-emerald-700">CSS</div>
+        </ResizeContainer.Item>
+      </div>
+    </ResizeContainer.Root>
+  )
+}
+```
