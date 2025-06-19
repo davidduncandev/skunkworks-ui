@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Heading } from '@/components/Heading'
 import { Prose } from '@/components/Prose'
 
+import { ResizeContainerDemo } from '@/components/demos/ResizeContainerDemo'
 import { ToggleViewDemo } from '@/components/demos/ToggleViewDemo'
 
 export const a = Link
@@ -124,4 +125,4 @@ export function Property({
   )
 }
 
-export { ToggleViewDemo }
+export { ResizeContainerDemo, ToggleViewDemo }
