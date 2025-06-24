@@ -6,6 +6,7 @@ import { Prose } from '@/components/Prose'
 
 import { ResizeContainerDemo } from '@/components/demos/ResizeContainerDemo'
 import { ToggleViewDemo } from '@/components/demos/ToggleViewDemo'
+import { ToggleViewHookDemo } from '@/components/demos/ToggleViewHookDemo'
 
 export const a = Link
 export { Button } from '@/components/Button'
@@ -125,4 +126,4 @@ export function Property({
   )
 }
 
-export { ResizeContainerDemo, ToggleViewDemo }
+export { ResizeContainerDemo, ToggleViewDemo, ToggleViewHookDemo }

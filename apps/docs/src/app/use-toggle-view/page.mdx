@@ -1,0 +1,93 @@
+export const metadata = {
+  title: 'UseToggleView',
+  description: 'The API for UseToggleView React hook',
+}
+
+# useToggleView
+
+A React hook which toggles to facilitate the toggling of two views with correct management of focus. {{ className: 'lead' }}
+
+## Demo
+
+This example features a Card component that toggles between two views. This achieves the same result as the [ToggleView](/toggle-view) component.
+
+<ToggleViewHookDemo />
+
+## Anatomy
+
+```js {{ title: 'Basic' }}
+import { useToggleView } from '@skunkworks-ui/toggle-view'
+
+export default () => {
+  const { switched, onSwitchedToggle, focusTargetRef } = useToggleView()
+  return !switched ? (
+    <div>
+      {/* The non-switched View with an element passed the target ref */}
+      <input ref={focusTargetRef} />
+      <button onClick={onSwitchedToggle}>Switch view</button>
+    </div>
+  ) : (
+    <div>
+      {/* The switched View with an element passed the target ref */}
+      <button ref={focusTargetRef} onClick={onSwitchedToggle} />
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### useToggleView
+
+The React hook encapsulating the stateful logic for toggling states and managing focus.
+
+<Properties>
+  <Property name="defaultSwitched" type="boolean">
+    The switched state of the useToggleView when it is initially rendered. Use
+    when you do not need to control its switched state.
+  </Property>
+  <Property name="switched" type="boolean">
+    The controlled switched state passed to useToggleView. Must be used in
+    conjunction with `onSwitchedChange`.
+  </Property>
+  <Property name="onSwitchedChange" type="(open: boolean) => void">
+    Event handler called when the switched state of the useToggleView changes.
+  </Property>
+</Properties>
+
+The hook will return 3 properties:
+
+1. `switched`: the switched state
+2. `onSwitchedToggle`: the event handler to call to toggle the view
+3. `focusTargetRef`: the ref to pass to an element in each view intended to recieve focus
+
+## Examples
+
+```js {{ title: 'Controlled API' }}
+import React from 'react'
+import { useToggleView } from '@skunkworks-ui/toggle-view'
+
+export default () => {
+  const [switched, setSwitched] = React.useState(false)
+  const {
+    switched: isSwitched,
+    onSwitchedToggle,
+    focusTargetRef,
+  } = useToggleView({
+    switched,
+    onSwitchedChange: setSwitched,
+  })
+  return !isSwitched ? (
+    <div>
+      {/* The non-switched View with an element passed the target ref */}
+      <input ref={focusTargetRef} />
+      <button onClick={onSwitchedToggle}>Switch view</button>
+    </div>
+  ) : (
+    <div>
+      {/* The switched View with an element passed the target ref */}
+      <button ref={focusTargetRef} onClick={onSwitchedToggle} />
+    </div>
+  )
+}
+```

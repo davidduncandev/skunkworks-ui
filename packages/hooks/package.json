@@ -1,0 +1,47 @@
+{
+  "name": "@skunkworks-ui/hooks",
+  "version": "0.0.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/hooks.d.ts",
+        "default": "./dist/hooks.js"
+      },
+      "require": {
+        "types": "./dist/hooks.d.ts",
+        "default": "./dist/hooks.js"
+      }
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "dev": "tsc --watch",
+    "lint": "eslint src --max-warnings 0",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.0",
+    "@skunkworks-ui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@skunkworks-ui/eslint-config": "workspace:*",
+    "@skunkworks-ui/utils": "workspace:*",
+    "@skunkworks-ui/typescript-config": "workspace:*",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^9.28.0",
+    "typescript": "5.8.2"
+  }
+}

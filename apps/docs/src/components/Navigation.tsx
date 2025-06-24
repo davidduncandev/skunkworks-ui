@@ -244,6 +244,10 @@ export const navigation: Array<NavGroup> = [
       { title: 'ResizeContainer', href: '/resize-container' },
     ],
   },
+  {
+    title: 'React Hooks',
+    links: [{ title: 'useToggleView', href: '/use-toggle-view' }],
+  },
 ]
 
 export function Navigation(props: React.ComponentPropsWithoutRef<'nav'>) {

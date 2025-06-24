@@ -18,6 +18,7 @@
     "@next/mdx": "^14.0.4",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@skunkworks-ui/hooks": "workspace:*",
     "@skunkworks-ui/resize-container": "workspace:*",
     "@skunkworks-ui/toggle-view": "workspace:*",
     "@skunkworks-ui/utils": "workspace:*",
